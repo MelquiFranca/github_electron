@@ -1,4 +1,5 @@
 const { ipcRenderer } = require('electron');
+
 function enviaFormulario() {
     const dados = {
         busca: document.getElementsByName('buscar')[0].value
@@ -10,11 +11,15 @@ function enviaFormulario() {
 }
 
 function carregaPreLista(dados) {
-    const { items } = dados;
+
+    const { items, total_count } = dados;
     const boxLista = document.getElementsByClassName('busca-pre-lista')[0];    
     const botaoExibirLista = document.getElementById('exibir-lista');    
     const lista = document.getElementsByClassName('lista')[0];
     
+    lista.textContent = '';
+    botaoExibirLista.textContent = '';
+
     items.slice(0, 3).map(user => {
         const li = document.createElement('li');
         const usuario =  document.createElement('div');
@@ -36,4 +41,5 @@ function carregaPreLista(dados) {
 
     boxLista.style.display = 'flex';
     botaoExibirLista.style.display = 'block';
+    botaoExibirLista.textContent = `Exibir todos os ${total_count} usuários`;
 }

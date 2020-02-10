@@ -34,7 +34,7 @@
     align-items: center;
     align-content: center;
     flex-direction: column;
-    flex: 2;
+    flex: 5;
 }
 
 .busca-principal form {
@@ -67,6 +67,7 @@
     flex: 1;
     /* background: #999; */
     flex-direction: column;
+    justify-content: space-between;
     display: none;
 }
 
@@ -95,8 +96,8 @@ li .usuario {
 }
 
 li .usuario img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
 }
 
@@ -105,5 +106,7 @@ li .usuario .dados {
     justify-content: center;
     align-items: center;
     font-size: 14px;
+    color: #333;
     font-weight: bold;
+    margin-top: 5px;
 }
