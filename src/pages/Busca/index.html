@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="busca-corpo">
+        <div class="logo">
+            <img src="../../images/logo.png" alt="">
+        </div>
+        <h2 class="titulo">Encontre no GitHub</h2>
+        <form 
+            action=""
+            method="POST"
+            onsubmit="return enviaFormulario()"
+        >
+            <input 
+                type="text" 
+                class="input-texto" 
+                placeholder="Digite o nome ou usuário"
+                name="buscar"
+            />
+            <button class="btn" type="submit">Pesquisar</button>
+        </form>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+.input-texto {
+    border: 1px solid #999;
+    /* border-radius: 4px; */
+    width: 100%;
+    max-width: 600px;
+    font-size: 16px;
+    padding: 10px 5px;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.btn {
+    min-width: 100px;
+    padding: 10px 15px;
+    font-size: 18px;
+    border: none;
+    margin: 15px auto;
+    background: rgb(114, 202, 224);
+}
+
+.busca-corpo {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.busca-corpo form {
+    width: 50%;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.busca-corpo .titulo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 25px auto;
+    flex: 1;
+}
+
+.busca-corpo .logo {
+    flex: 3;
+    /* border: 1px solid black; */
+    align-items: flex-end;
+}
+
+.busca-corpo .logo img {
+    width: 170px;
+    height: 150px;
+}
