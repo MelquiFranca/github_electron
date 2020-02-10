@@ -19,12 +19,13 @@ module.exports = {
             win.show();
         });
 
-        // win.webContents.openDevTools();
-        
-        ipcMain.on('busca', (evento, dados) => {
+        ipcMain.handle('busca', async (evento, dados) => {
 
-            BuscaController.pesquisar(dados.busca);
-        })
+            const usuarios = await BuscaController.listar(dados.busca);
+            return usuarios;
+        });
+
+        // win.webContents.openDevTools();
     },
 
     async detalhesPerfil() {
@@ -33,5 +34,7 @@ module.exports = {
         win.once('ready-to-show', () => {
             win.show();
         });
+
+        // win.webContents.openDevTools();
     }
 }
