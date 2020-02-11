@@ -19,7 +19,7 @@ module.exports = {
         
         function carregaUsuarios() {
             const dados = busca.map(user => {
-                const dados = loadDados(user);
+                const dados = await loadDados(user);
                 return dados;
             });
 
