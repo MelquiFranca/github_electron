@@ -12,9 +12,9 @@
 .btn {
     min-width: 100px;
     padding: 10px 15px;
-    font-size: 18px;
+    font-size: 16px;
     border: none;
-    margin: 15px auto;
+    margin-top: 5px;
     background: #72cae0;
 }
 

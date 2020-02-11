@@ -10,40 +10,61 @@ const CONFIGURACOES_INICIAIS = {
 
 };
 
-module.exports = {
-    busca() {
-        const win = new BrowserWindow(CONFIGURACOES_INICIAIS);
-        win.loadFile('./pages/Busca/index.html');
+let janelaBusca;
+let janelaLista;
 
-        win.once('ready-to-show', () => {
-            win.show();
-        });
 
-        ipcMain.handle('busca', async (evento, dados) => {
-            const usuarios = await BuscaController.listar(dados.busca);
-            return usuarios;
-        });
+function criaJanelaBusca() {
+    janelaBusca = new BrowserWindow(CONFIGURACOES_INICIAIS);
+    janelaBusca.loadFile('./pages/Busca/index.html');
 
+    janelaBusca.once('ready-to-show', () => {
+        janelaBusca.show();
+    });
+
+    ipcMain.handle('busca', async (evento, dados) => {
+
+        const usuarios = await BuscaController.listar(dados.busca);
+        return usuarios;
+    });
+
+    ipcMain.on('exibe-lista', (evento, dados) => {
         
-        ipcMain.on('exibe-lista', (event, dados) => {
-            event.preventDefault();
-            // const win = new BrowserWindow(CONFIGURACOES_INICIAIS);
-            win.loadFile('./pages/Lista/index.html');
-            console.log(dados);
-            ipcMain.handle('dados-lista', (evento, d) => {
-                return dados;
-            })
-        });
+        janelaBusca.hide();
+        
+        if(!janelaLista) {
+            criaJanelaLista(dados);
+        } else {
+            janelaLista.show();
+        }
+    });
+    janelaBusca.on('closed', () => {
+        janelaBusca = null;
+    })
+
+    
+    // janelaBusca.webContents.openDevTools();
+}
+
+async function criaJanelaLista(dados) {
+    janelaLista = new BrowserWindow({...CONFIGURACOES_INICIAIS, parent: janelaBusca, modal: true});    
+    janelaLista.loadFile('./pages/Lista/index.html');
+    
+    let usuarios = await BuscaController.listar(dados);
+    let novosDados = await BuscaController.listarComDadosCompletos(usuarios.items);
+    console.log(novosDados);
+    janelaLista.webContents.send('carrega-usuarios', novosDados);
+    
+    janelaLista.on('closed', () => {
+        janelaLista = null;
+        janelaBusca.show();
+    });
+
+    janelaLista.webContents.openDevTools();
+}
 
 
-        win.webContents.openDevTools();
 
-        ipcMain.on('teste', (event, dados) => {     
-            // const win = new BrowserWindow(CONFIGURACOES_INICIAIS);    
-            win.loadFile('./pages/DetalhesPerfil/index.html');
-            win.once('ready-to-show', () => {
-                win.show();
-            });
-        })
-    }
+module.exports = {
+    criaJanelaBusca,
 }

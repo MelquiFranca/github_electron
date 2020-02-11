@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-const renderizaPaginas = require('./renderizaPaginas');
+const {criaJanelaBusca} = require('./renderizaPaginas');
 
-app.whenReady().then(renderizaPaginas.busca);
+app.whenReady().then(criaJanelaBusca);
 
 app.on('window-all-closed', () => {
     if(process.platform !== 'darwin') {
@@ -11,6 +11,6 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
     if(BrowserWindow.getAllWindows().length === 0) {
-        renderizaPaginas.busca();
+        criaJanelaBusca();
     }
 });

@@ -9,3 +9,7 @@ html, body, div {
     height: 100%;
     display: flex;
 }
+
+a {
+    text-decoration: none;
+}
