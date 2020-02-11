@@ -20,21 +20,30 @@ module.exports = {
         });
 
         ipcMain.handle('busca', async (evento, dados) => {
-
             const usuarios = await BuscaController.listar(dados.busca);
             return usuarios;
         });
 
-        // win.webContents.openDevTools();
-    },
-
-    async detalhesPerfil() {
-        const win = new BrowserWindow(CONFIGURACOES_INICIAIS);    
-        win.loadFile('./pages/DetalhesPerfil/index.html');
-        win.once('ready-to-show', () => {
-            win.show();
+        
+        ipcMain.on('exibe-lista', (event, dados) => {
+            event.preventDefault();
+            // const win = new BrowserWindow(CONFIGURACOES_INICIAIS);
+            win.loadFile('./pages/Lista/index.html');
+            console.log(dados);
+            ipcMain.handle('dados-lista', (evento, d) => {
+                return dados;
+            })
         });
 
-        // win.webContents.openDevTools();
+
+        win.webContents.openDevTools();
+
+        ipcMain.on('teste', (event, dados) => {     
+            // const win = new BrowserWindow(CONFIGURACOES_INICIAIS);    
+            win.loadFile('./pages/DetalhesPerfil/index.html');
+            win.once('ready-to-show', () => {
+                win.show();
+            });
+        })
     }
 }

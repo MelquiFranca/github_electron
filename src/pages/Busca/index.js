@@ -36,10 +36,15 @@ function carregaPreLista(dados) {
         li.appendChild(usuario);
         lista.appendChild(li);
 
-        // console.log(user);
-    })
-
+    });
+    
+    document.getElementById('items').value = dados;
     boxLista.style.display = 'flex';
     botaoExibirLista.style.display = 'block';
     botaoExibirLista.textContent = `Exibir todos os ${total_count} usuários`;
+}
+
+function exibePaginalistaCompleta() {
+    const items = document.getElementsByName('buscar')[0].value;
+    ipcRenderer.send('exibe-lista', items);
 }
