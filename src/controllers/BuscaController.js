@@ -1,38 +1,31 @@
 const axios = require('axios');
-module.exports = {
-    async selecionar(busca) {
-        const retorno = await axios.get(`https://api.github.com/users/${busca}`);
-        return retorno.data;
-    },
 
-    async listar(busca) {
-        const retorno = await axios.get(`https://api.github.com/search/users?q=${busca}`);
-        return retorno.data;
-    },
+async function selecionar(busca) {
+    const retorno = await axios.get(`https://api.github.com/users/${busca}`);
+    return retorno.data;
+}
 
-    async listarComDadosCompletos(busca) {
+async function listar(busca) {
+    const retorno = await axios.get(`https://api.github.com/search/users?q=${busca}`);
+    return retorno.data;
+}
 
-        async function loadDados(dados) {
-            const retorno = await axios.get(dados.url);
-            return retorno.data;
-        }        
-        
-        function carregaUsuarios() {
-            const dados = busca.map(user => {
-                const dados = await loadDados(user);
-                return dados;
-            });
+async function listarComDadosCompletos(busca) {
 
-            return dados;
-        }
-        
-        const usuarios = carregaUsuarios();
-        // usuarios = carregaUsuarios();
-
-        // console.log(usuarios);
-        
-        return usuarios;
+    // let usuarios = [];
     
-    }
+    let dados = busca.map(async user => {
+        const retorno = await selecionar(user.login);
 
+        return retorno;
+    });      
+    return dados;
+
+}
+
+
+module.exports = {
+    selecionar,
+    listar,
+    listarComDadosCompletos,
 }

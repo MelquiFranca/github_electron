@@ -13,3 +13,66 @@ html, body, div {
 a {
     text-decoration: none;
 }
+
+.corpo {
+    flex-direction: column;
+}
+
+.btn-seguir {
+    /* height: 30px; */
+    /* width: ; */
+    border: none;
+    padding: 5px 5px;
+    background: #72e0c4;
+    border-radius: 2px;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.btn-sair {
+    border: none;
+    padding: 5px 5px;
+    background: #aaaaaa;
+    border-radius: 2px;
+    color: #000;
+    cursor: pointer;
+}
+
+.input-texto {
+    border: 1px solid #999;
+    /* border-radius: 4px; */
+    width: 100%;
+    max-width: 600px;
+    font-size: 16px;
+    padding: 10px 5px;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.btn {
+    min-width: 100px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    margin-top: 5px;
+    background: #72cae0;
+}
+
+.btn-link {
+    background: none;
+    color: #329eb9;
+    font-size: 14px;
+    border: none;
+    margin: 15px auto;
+}
+
+.logo {
+    flex: 3;
+    /* border: 1px solid black; */
+    align-items: flex-end;
+}
+
+.logo img {
+    width: 170px;
+    height: 150px;
+}

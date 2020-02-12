@@ -12,7 +12,7 @@ const CONFIGURACOES_INICIAIS = {
 
 let janelaBusca;
 let janelaLista;
-
+let janelaPerfil;
 
 function criaJanelaBusca() {
     janelaBusca = new BrowserWindow(CONFIGURACOES_INICIAIS);
@@ -49,12 +49,19 @@ function criaJanelaBusca() {
 async function criaJanelaLista(dados) {
     janelaLista = new BrowserWindow({...CONFIGURACOES_INICIAIS, parent: janelaBusca, modal: true});    
     janelaLista.loadFile('./pages/Lista/index.html');
-    
+        
+
     let usuarios = await BuscaController.listar(dados);
-    let novosDados = await BuscaController.listarComDadosCompletos(usuarios.items);
-    console.log(novosDados);
-    janelaLista.webContents.send('carrega-usuarios', novosDados);
+
+    janelaLista.webContents.send('carrega-usuarios', usuarios);
     
+    ipcMain.on('exibe-perfil', (evento, dados) => {
+
+        criaJanelaPerfil(dados);
+        janelaLista.hide();
+
+    });
+
     janelaLista.on('closed', () => {
         janelaLista = null;
         janelaBusca.show();
@@ -63,6 +70,15 @@ async function criaJanelaLista(dados) {
     janelaLista.webContents.openDevTools();
 }
 
+async function criaJanelaPerfil(dados) {
+    janelaPerfil = new BrowserWindow({...CONFIGURACOES_INICIAIS, parent: janelaLista, modal: true});
+    janelaPerfil.loadFile('./pages/DetalhesPerfil/index.html');
+
+    janelaPerfil.on('closed', () => {
+        janelaPerfil = null;
+        janelaLista.show();
+    })
+}
 
 
 module.exports = {

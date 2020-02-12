@@ -10,8 +10,8 @@
 }
 
 .lista-usuario-item {
-    width: 80%;
-    max-width: 800px;
+    width: 70%;
+    max-width: 700px;
     height: 90px;
     border-radius: 4px;
     box-shadow: 0px 0px 3px 1px #F0F0F0;
@@ -41,17 +41,19 @@
 
 .usuario-item-dados .nome {
     flex: 1;
-    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
     font-weight: bold;
     color: #222;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .usuario-item-dados .bio {
     flex: 3;
     font-size: 14px;
     color: #555;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     /* border: 1px solid black; */
 }
 
@@ -60,24 +62,4 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-}
-
-.btn-seguir {
-    /* height: 30px; */
-    /* width: ; */
-    border: none;
-    padding: 5px 5px;
-    background: #72e0c4;
-    border-radius: 2px;
-    color: #FFF;
-    cursor: pointer;
-}
-
-.btn-sair {
-    border: none;
-    padding: 5px 5px;
-    background: #aaaaaa;
-    border-radius: 2px;
-    color: #000;
-    cursor: pointer;
 }
