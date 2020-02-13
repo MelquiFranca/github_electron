@@ -23,9 +23,14 @@ async function listarComDadosCompletos(busca) {
 
 }
 
+async function listaRepositorios(url) {
+    const retorno = await axios.get(url);
+    return retorno.data;
+}
 
 module.exports = {
     selecionar,
     listar,
     listarComDadosCompletos,
+    listaRepositorios,
 }

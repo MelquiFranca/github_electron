@@ -1,0 +1,21 @@
+.detalhes-principal {
+    flex-direction: column;    
+    padding: 10px 0px;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 200px;
+    height: 220px;
+}
+
+.nome { 
+    font-size: 23px;
+    font-weight: bold;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.bio {
+
+}
