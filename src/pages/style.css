@@ -22,19 +22,19 @@ a {
     /* height: 30px; */
     /* width: ; */
     border: none;
-    padding: 5px 5px;
+    padding: 5px;
+    border-radius: 50%;
     background: #72e0c4;
-    border-radius: 2px;
     color: #FFF;
     cursor: pointer;
 }
 
 .btn-sair {
     border: none;
-    padding: 5px 5px;
-    background: #aaaaaa;
-    border-radius: 2px;
-    color: #000;
+    padding: 5px 6px;
+    background: #e07272;
+    border-radius: 50%;
+    color: #FFF;
     cursor: pointer;
 }
 

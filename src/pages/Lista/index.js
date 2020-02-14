@@ -19,7 +19,8 @@ function carregaLista() {
         // const itemDadosBio = document.createElement('div');
         const imagem = document.createElement('img');
         const acoes = document.createElement('div');
-        const btnAcoes = document.createElement('button');
+        const btnFavoritar = document.createElement('button');
+        const btnDesfavoritar = document.createElement('button');
         const inputHidden = document.createElement('input');
         
         usuarioItem.setAttribute('class', 'lista-usuario-item');
@@ -30,14 +31,18 @@ function carregaLista() {
         // itemDadosBio.setAttribute('class', 'bio');
         imagem.setAttribute('src', usuario.avatar_url);
         acoes.setAttribute('class', 'acoes');
-        btnAcoes.setAttribute('class', 'btn-seguir');
-        btnAcoes.setAttribute('id', usuario.id);
+        btnFavoritar.setAttribute('class', 'btn-seguir fa fa-check');
+        btnFavoritar.setAttribute('id', usuario.id);
+        btnDesfavoritar.setAttribute('class', 'btn-sair fa fa-close');
+        btnDesfavoritar.setAttribute('id', usuario.id);
         inputHidden.setAttribute('type', 'hidden');        
         inputHidden.setAttribute('name', 'dadosUsuario');
         inputHidden.setAttribute('value', usuario.id);        
         
-        btnAcoes.textContent = 'Seguir';
-        btnAcoes.onclick = favoritar;
+        // btnFavoritar.textContent = 'Seguir';
+        // btnDesfavoritar.textContent = 'Seguir';
+        btnFavoritar.onclick = favoritar;
+        btnDesfavoritar.onclick = () =>{};
         itemDadosNome.textContent = usuario.login;
         // itemDadosBio.textContent = usuario.bio || 'Sem Biografia...';
 
@@ -46,8 +51,8 @@ function carregaLista() {
         // usuarioItemDados.appendChild(itemDadosBio);
         usuarioItemLink.appendChild(imagem);
         usuarioItemLink.appendChild(usuarioItemDados);
-
-        acoes.appendChild(btnAcoes);
+        acoes.appendChild(btnFavoritar);
+        acoes.appendChild(btnDesfavoritar);
 
         usuarioItem.appendChild(usuarioItemLink);
         usuarioItem.appendChild(acoes);
