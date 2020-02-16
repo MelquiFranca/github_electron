@@ -5,7 +5,7 @@ let usuariosEncontrados;
 ipcRenderer.on('carrega-usuarios', (event, dados) => {
     usuariosEncontrados = dados.items;
     carregaLista();
-    // console.log(usuariosEncontrados);
+    console.log(dados);
 });
 
 function carregaLista() {

@@ -1,10 +1,12 @@
 const { ipcRenderer } = require('electron');
 
+let listaUsuarios;
 function enviaFormulario() {
     const dados = {
         busca: document.getElementsByName('buscar')[0].value
     };
     ipcRenderer.invoke('busca', dados).then(retorno => {
+        listaUsuarios = retorno;
         carregaPreLista(retorno);
     });
     return false;
@@ -45,6 +47,6 @@ function carregaPreLista(dados) {
 }
 
 function exibePaginalistaCompleta() {
-    const busca = document.getElementsByName('buscar')[0].value;
-    ipcRenderer.send('exibe-lista', busca);
+    // const busca = document.getElementsByName('buscar')[0].value;    
+    ipcRenderer.send('exibe-lista', listaUsuarios.items);
 }

@@ -1,7 +1,7 @@
-const Usuario = require('../database/models/usuario');
-
-async function adicionarFavorito(dados) {
+// const sequelize = require('../database/models/index');
+async function adicionarFavorito(dados) {   
     
+    // const favoritos = await Usuario.findAll({});
     console.log(dados);
     return true;
 }

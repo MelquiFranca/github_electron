@@ -47,12 +47,11 @@ function criaJanelaBusca() {
     // janelaBusca.webContents.openDevTools();
 }
 
-async function criaJanelaLista(dados) {
+async function criaJanelaLista(usuarios) {
     janelaLista = new BrowserWindow({...CONFIGURACOES_INICIAIS, parent: janelaBusca, modal: true});    
     janelaLista.loadFile('./pages/Lista/index.html');
     
-    let usuarios = await BuscaController.listar(dados);
-
+    // let usuarios = await BuscaController.listar(dados);    
     janelaLista.webContents.send('carrega-usuarios', usuarios);
     
     ipcMain.on('exibe-perfil', async (evento, dados) => {      
