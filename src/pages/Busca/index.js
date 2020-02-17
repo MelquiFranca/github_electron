@@ -47,6 +47,6 @@ function carregaPreLista(dados) {
 }
 
 function exibePaginalistaCompleta() {
-    // const busca = document.getElementsByName('buscar')[0].value;    
-    ipcRenderer.send('exibe-lista', listaUsuarios.items);
+    const busca = document.getElementsByName('buscar')[0].value;    
+    ipcRenderer.send('exibe-lista', busca);
 }

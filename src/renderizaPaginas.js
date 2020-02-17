@@ -47,11 +47,11 @@ function criaJanelaBusca() {
     // janelaBusca.webContents.openDevTools();
 }
 
-async function criaJanelaLista(usuarios) {
+async function criaJanelaLista(busca) {
     janelaLista = new BrowserWindow({...CONFIGURACOES_INICIAIS, parent: janelaBusca, modal: true});    
     janelaLista.loadFile('./pages/Lista/index.html');
     
-    // let usuarios = await BuscaController.listar(dados);    
+    let usuarios = await BuscaController.listar(busca);    
     janelaLista.webContents.send('carrega-usuarios', usuarios);
     
     ipcMain.on('exibe-perfil', async (evento, dados) => {      
@@ -82,7 +82,7 @@ async function criaJanelaLista(usuarios) {
     janelaLista.on('close', () => {
         janelaLista = null;        
     });
-    janelaLista.webContents.openDevTools();
+    // janelaLista.webContents.openDevTools();
 }
 
 async function criaJanelaPerfil(dados) {
@@ -94,12 +94,17 @@ async function criaJanelaPerfil(dados) {
 
     janelaPerfil.webContents.send('carrega-dados-usuario', {usuario, repositorios});
 
+    ipcMain.handle('adicionar-favorito-individual', async (evento, dados) => {
+        return FavoritoController.adicionarFavorito(dados);
+    });
+
     janelaPerfil.on('closed', () => {
+        ipcMain.removeHandler('adicionar-favorito-individual');
         janelaPerfil = null;
         janelaLista.show();
     });   
 
-    janelaPerfil.webContents.openDevTools();
+    // janelaPerfil.webContents.openDevTools();
 }
 
 

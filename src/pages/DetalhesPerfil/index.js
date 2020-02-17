@@ -1,4 +1,5 @@
 const { ipcRenderer } = require('electron');
+const ScriptPrincipal = require('../scriptPrincipal');
 
 let dadosUsuario;
 
@@ -6,11 +7,17 @@ function carregaDadosUsuario(usuario) {
     // const detalhesUsuario = document.getElementById('detalhes-usuario');
     const avatar = document.getElementsByName('avatar')[0];
     const nome = document.getElementsByName('nome')[0];
+    const acoes = document.getElementsByName('acoes')[0];
     const bio = document.getElementsByName('bio')[0];
+    const btnFavoritar = ScriptPrincipal.criaBotaoFavoritar(usuario.id, favoritar);
+    const btnDesfavoritar = ScriptPrincipal.criaBotaoDesfavoritar(usuario.id);
 
     avatar.setAttribute('src', usuario.avatar_url);
-    nome.textContent = usuario.login;
+    nome.textContent = usuario.name;
     bio.textContent = usuario.bio || "Sem Biografia...";
+    
+    acoes.appendChild(btnFavoritar);
+    acoes.appendChild(btnDesfavoritar);
 }
 
 function carregaDadosRepositorios(repositorios) {
@@ -41,3 +48,14 @@ ipcRenderer.on('carrega-dados-usuario', (evento, dados) => {
     carregaDadosRepositorios(dados.repositorios);
     
 });
+
+
+function favoritar(e) {
+    e.preventDefault();
+
+    ipcRenderer.invoke('adicionar-favorito-individual', dadosUsuario.usuario)
+        .then(retorno => {
+            // console.log(retorno);
+        }
+    );
+}
