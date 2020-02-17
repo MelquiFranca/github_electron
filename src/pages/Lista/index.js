@@ -51,7 +51,6 @@ function carregaLista() {
 }
 
 function acessaPerfil(e) {
-    const nome = e.target.parentElement.getElementsByClassName('nome')[0].textContent;
     const dadosUsuario = e.target.parentElement.querySelector('[name=dadosUsuario]');
     const usuario = usuariosEncontrados.filter(usu => usu.id == dadosUsuario.value);
     // console.log(usuario);
