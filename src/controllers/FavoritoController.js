@@ -29,7 +29,15 @@ async function removerFavorito(dados) {
     return true;
 }
 
+async function verificaFavorito(id) {
+    const usuario = await Usuario.findOne({
+        where: {idGit: id}
+    });
+    return usuario.dataValues;
+}
+
 module.exports = {
     adicionarFavorito,
-    removerFavorito
+    removerFavorito,
+    verificaFavorito
 }

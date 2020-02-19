@@ -1,6 +1,7 @@
 .detalhes-principal {
     flex-direction: column;    
     padding: 10px 0px;
+    flex: 1;
 }
 
 .avatar {
@@ -43,24 +44,21 @@
 }
 
 .lista-repositorios {
-    width: 90%;
-    /* min-height: 200px;
-    overflow: auto; */
-    /* margin-top: 10px; */
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     flex: 5;
-    justify-content: center;
-    /* max-height: 150px; */
+    justify-content: flex-start;
     /* border: 1px solid black; */
-    /* padding: 10px 5px; */
+    padding: 10px 20px;
 }
 
 .lista-repositorios .item-repositorios {
     /* height: 50px; */
     width: 100%;
     display: flex;
-    flex: 2;
+    /* flex: 2; */
     flex-direction: column;
     list-style: none;
     align-items: center;
