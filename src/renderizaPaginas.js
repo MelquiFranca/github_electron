@@ -67,11 +67,16 @@ async function criaJanelaLista(busca) {
 
     ipcMain.handle('adicionar-favorito', async (evento, dados) => {
         return FavoritoController.adicionarFavorito(dados);
-    })
+    });
+
+    ipcMain.handle('remover-favorito', async (evento, dados) => {
+        return FavoritoController.removerFavorito(dados);
+    });
 
     janelaLista.on('closed', () => {
         janelaLista = null;
         ipcMain.removeHandler('adicionar-favorito');
+        ipcMain.removeHandler('remover-favorito');
         if(!janelaBusca) {
             criaJanelaBusca();
         } else {
@@ -98,8 +103,13 @@ async function criaJanelaPerfil(dados) {
         return FavoritoController.adicionarFavorito(dados);
     });
 
+    ipcMain.handle('remover-favorito-individual', async (evento, dados) => {
+        return FavoritoController.removerFavorito(dados);
+    });
+
     janelaPerfil.on('closed', () => {
         ipcMain.removeHandler('adicionar-favorito-individual');
+        ipcMain.removeHandler('remover-favorito-individual');
         janelaPerfil = null;
         janelaLista.show();
     });   

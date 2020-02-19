@@ -20,7 +20,7 @@ function carregaLista() {
         const imagem = document.createElement('img');
         const acoes = document.createElement('div');
         const btnFavoritar = ScriptPrincipal.criaBotaoFavoritar(usuario.id, favoritar);
-        const btnDesfavoritar =  ScriptPrincipal.criaBotaoDesfavoritar(usuario.id);
+        const btnDesfavoritar =  ScriptPrincipal.criaBotaoDesfavoritar(usuario.id, desFavoritar);
         const inputHidden = document.createElement('input');
         
         usuarioItem.setAttribute('class', 'lista-usuario-item');
@@ -63,6 +63,18 @@ function favoritar(e) {
     const usuario = usuariosEncontrados.filter(usu => usu.id == e.target.id);
 
     ipcRenderer.invoke('adicionar-favorito', usuario[0])
+        .then(retorno => {
+            // console.log(retorno);
+        }
+    );
+}
+
+function desFavoritar(e) {
+    e.preventDefault();
+    
+    const usuario = usuariosEncontrados.filter(usu => usu.id == e.target.id);
+
+    ipcRenderer.invoke('remover-favorito', usuario[0])
         .then(retorno => {
             // console.log(retorno);
         }

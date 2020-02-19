@@ -8,11 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      idGit: {
+        allowNull: false,
+        unique: true,
+        type: Sequelize.INTEGER
+      },
       login: {
         type: Sequelize.STRING
       },
-      id: {
-        type: Sequelize.INTEGER
+      nome: {
+        type: Sequelize.STRING
       },
       avatar_url: {
         type: Sequelize.STRING

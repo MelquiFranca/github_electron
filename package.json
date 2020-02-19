@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "electron src/main.js",
-		"rebuild": "electron-rebuild -f -w sqlite3"
+		"rebuild": "electron-rebuild -f -w sqlite3",
+		"postinstall": "electron-builder install-app-deps"
 	},
 	"keywords": [],
 	"author": "",
@@ -16,6 +17,8 @@
 	},
 	"dependencies": {
 		"axios": "^0.19.2",
+		"electron-builder": "^22.3.2",
+		"mysql2": "^2.1.0",
 		"sequelize": "^5.21.4",
 		"sqlite3": "^4.1.1"
 	}

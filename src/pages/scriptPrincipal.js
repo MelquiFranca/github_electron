@@ -8,11 +8,11 @@ function criaBotaoFavoritar(id, funcao) {
     return btnFavoritar;
 }
 
-function criaBotaoDesfavoritar(id) {
+function criaBotaoDesfavoritar(id, funcao) {
     const btnDesfavoritar = document.createElement('button');
     btnDesfavoritar.setAttribute('class', 'btn-sair fa fa-close');
     btnDesfavoritar.setAttribute('id', id);
-    btnDesfavoritar.onclick = () =>{};
+    btnDesfavoritar.onclick = funcao;
 
     return btnDesfavoritar;
 }

@@ -2,9 +2,9 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "database_development",
-    "host": "db.sqlite",
-    "dialect": "sqlite",
+    "database": "github",
+    "host": "localhost",
+    "dialect": "mysql",
     "operatorsAliases": false
   },
   "test": {

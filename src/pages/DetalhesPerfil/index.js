@@ -10,7 +10,7 @@ function carregaDadosUsuario(usuario) {
     const acoes = document.getElementsByName('acoes')[0];
     const bio = document.getElementsByName('bio')[0];
     const btnFavoritar = ScriptPrincipal.criaBotaoFavoritar(usuario.id, favoritar);
-    const btnDesfavoritar = ScriptPrincipal.criaBotaoDesfavoritar(usuario.id);
+    const btnDesfavoritar = ScriptPrincipal.criaBotaoDesfavoritar(usuario.id, desFavoritar);
 
     avatar.setAttribute('src', usuario.avatar_url);
     nome.textContent = usuario.name;
@@ -54,6 +54,15 @@ function favoritar(e) {
     e.preventDefault();
 
     ipcRenderer.invoke('adicionar-favorito-individual', dadosUsuario.usuario)
+        .then(retorno => {
+            // console.log(retorno);
+        }
+    );
+}
+function desFavoritar(e) {
+    e.preventDefault();
+
+    ipcRenderer.invoke('remover-favorito-individual', dadosUsuario.usuario)
         .then(retorno => {
             // console.log(retorno);
         }
