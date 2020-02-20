@@ -1,9 +1,13 @@
 const { Usuario } = require('../database/models/');
 const BuscaController = require('./BuscaController');
 
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
+
 async function adicionarFavorito(dados) { 
     const usuario = await BuscaController.selecionar(dados.login);
-    const favoritos = await Usuario.findOrCreate({
+    const favorito = await Usuario.findOrCreate({
         where: {idGit: usuario.id}, 
         defaults: {
             idGit: usuario.id,
@@ -15,8 +19,10 @@ async function adicionarFavorito(dados) {
             repos_url: usuario.repos_url
         }
     });
-    console.log(favoritos);
-    return true;
+
+    // salvaAvatar(usuario.avatar_url);
+
+    return favorito;
 }
 async function removerFavorito(dados) {   
     
@@ -25,7 +31,6 @@ async function removerFavorito(dados) {
             idGit: dados.id
         }
     });
-    console.log(favorito);
     return true;
 }
 
@@ -36,8 +41,25 @@ async function verificaFavorito(id) {
     return usuario.dataValues;
 }
 
+async function salvaAvatar(id, url) {
+    // const imagem = await axios.get(url);
+    // const caminho = path.resolve('src', 'images', 'avatarFavoritos', `${id}.jpeg`);
+    // console.log(imagem.data);
+    // fs.writeFile(caminho, new URL(url), (err) => {
+    //     if(err) console.log(err);
+
+    // });
+
+    return true;
+}
+
+async function excluiAvatar(url) {
+    return true;
+}
 module.exports = {
     adicionarFavorito,
     removerFavorito,
-    verificaFavorito
+    verificaFavorito,
+    salvaAvatar,
+    excluiAvatar
 }
